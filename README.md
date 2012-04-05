@@ -36,6 +36,8 @@ The custom `onImageLoad` event is exposed and triggered whenever an image starts
 
 Forked by Lee Powers: [http://powers1.net](http://powers1.net)
 
+I've needed this for a while for slideshows with large images or a large number of images. Tried dabbling in creating my own jQuery slideshow plugin, but Nivo already has 99% of what I'm looking for. Reading [this Stack Overflow question](http://stackoverflow.com/questions/5502531/how-can-i-control-how-nivoslider-preloads-images/) provided any additional push needed to get this working!
+
 ## About Nivo Slider
 
 To find out more about Nivo Slider visit the home page at [http://nivo.dev7studios.com](http://nivo.dev7studios.com)
