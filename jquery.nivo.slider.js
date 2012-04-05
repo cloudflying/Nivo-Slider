@@ -84,7 +84,6 @@
           if (nxt >= kids.length) nxt = 0
           else if (nxt < 0) nxt = 0;
           var img = parse_image(nxt);
-          console.log(nxt, img);
           $('<img>').attr('src', parse_src(img));
         }
         
@@ -381,7 +380,6 @@
 			if(vars.currentSlide < 0) vars.currentSlide = (vars.totalSlides - 1);
 			//Set vars.currentImage
                         vars.currentImage = parse_image(vars.currentSlide);
-                        console.log('currentImage', vars.currentSlide, vars.currentImage);
 			//Set active links
 			if(settings.controlNav){
 				$('.nivo-controlNav a', slider).removeClass('active');
