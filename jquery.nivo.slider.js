@@ -24,12 +24,6 @@
             paused: false,
             stop: false
         };
-        
-        // Parse image source from an element.
-        // Checks in data-src, then in src
-        var parse_src = function(elem) {
-          return elem.data('src') || elem.attr('src');
-        }
     
         //Get this slider
         var slider = $(element);
@@ -68,6 +62,32 @@
             vars.totalSlides++;
         });
         
+        // Parse image source from an element.
+        // Checks in data-src, then in src
+        var parse_src = function(elem) {
+          return elem.data('src') || elem.attr('src');
+        }
+        
+        // Parse out the image URL string at the given child index.
+        // Does no bounds checking!
+        var parse_image = function(idx) {
+          if($(kids[idx]).is('img')) {
+            return $(kids[idx]);
+          } else {
+            return $(kids[idx]).find('img:first');
+          }
+        }
+        
+        // Preload the image in the kids collection at the given step from the current slide
+        var preload_image = function(step) {
+          var nxt = vars.currentSlide + step;
+          if (nxt >= kids.length) nxt = 0
+          else if (nxt < 0) nxt = 0;
+          var img = parse_image(nxt);
+          console.log(nxt, img);
+          $('<img>').attr('src', parse_src(img));
+        }
+        
         //If randomStart
         if(settings.randomStart){
         	settings.startSlide = Math.floor(Math.random() * vars.totalSlides);
@@ -93,6 +113,14 @@
         
         //Set first background
         slider.css('background','url("'+ parse_src(vars.currentImage) +'") no-repeat');
+        
+        // Preload second image to transition into.
+        // Given the first image some time to load!
+        if (!settings.manualAdvance && kids.length > 1) {
+          setTimeout(function() {
+            preload_image(1);
+          }, Math.max(1000, settings.pauseTime - 1000));
+        }
 
         //Create caption
         slider.append(
@@ -245,9 +273,13 @@
             if($(kids[vars.currentSlide]).is('a')){
                 $(kids[vars.currentSlide]).css('display','block');
             }
-            //Restart the timer
-            if(timer == '' && !vars.paused && !settings.manualAdvance){
-                timer = setInterval(function(){ nivoRun(slider, kids, settings, false); }, settings.pauseTime);
+            if(!vars.paused && !settings.manualAdvance){
+                // Preload the next image (when found)
+                preload_image(1);
+                // Restart the timer
+                if (timer == '' ) {
+                  timer = setInterval(function(){ nivoRun(slider, kids, settings, false); }, settings.pauseTime);
+                }
             }
             //Trigger the afterChange callback
             settings.afterChange.call(this);
@@ -348,12 +380,8 @@
 			}
 			if(vars.currentSlide < 0) vars.currentSlide = (vars.totalSlides - 1);
 			//Set vars.currentImage
-			if($(kids[vars.currentSlide]).is('img')){
-				vars.currentImage = $(kids[vars.currentSlide]);
-			} else {
-				vars.currentImage = $(kids[vars.currentSlide]).find('img:first');
-			}
-			
+                        vars.currentImage = parse_image(vars.currentSlide);
+                        console.log('currentImage', vars.currentSlide, vars.currentImage);
 			//Set active links
 			if(settings.controlNav){
 				$('.nivo-controlNav a', slider).removeClass('active');
