@@ -1,12 +1,16 @@
 /*
- * jQuery Nivo Slider v2.7.1
- * http://nivo.dev7studios.com
+ * jQuery Lazy Nivo Slider 1.0
+ * https://github.com/leepowers/Nivo-Slider
  *
- * Copyright 2011, Gilbert Pellegrom
+ * Forked from: jQuery Nivo Slider v2.7.1
+ * http://nivo.dev7studios.com
+ * 
+ *
+ * Copyright 2012, Lee Powers, Gilbert Pellegrom
  * Free to use and abuse under the MIT license.
  * http://www.opensource.org/licenses/mit-license.php
  * 
- * March 2010
+ * April 2012
  */
 
 (function($) {
