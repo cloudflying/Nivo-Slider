@@ -84,7 +84,7 @@
           if (nxt >= kids.length) nxt = 0
           else if (nxt < 0) nxt = 0;
           var img = parse_image(nxt);
-          $('<img>').attr('src', parse_src(img));
+          img.attr('src', img.data('src'));  // Update image's source from the data source 
         }
         
         //If randomStart
