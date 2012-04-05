@@ -1,6 +1,12 @@
 # Lazy Loading Nivo Slider
 
-A fork of Nivo Slider that enables lazy loading of images. Great for collections of many images or large images. 
+A fork of Nivo Slider enabling lazy loading of images. 
+
+Use cases:
+
+ * Dozens of images in the slideshow
+ * Very large images
+ * Mobile enviornments
 
 ## Usage
 
