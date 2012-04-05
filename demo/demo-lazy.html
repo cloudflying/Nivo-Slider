@@ -20,6 +20,22 @@
         font-size: 150%;
         margin: 50px auto 25px auto;
       }
+      SMALL {
+        font-size: 80%;
+      }
+      SPAN.code {
+        display: inline;
+        font-family: monospace;
+      }
+      STRONG {
+        font-weight: bold;
+      }
+      #imgload_txt {
+        color: #c00;
+      }
+      #imgshow_txt {
+        color: #00c;
+      }
     </style>
 </head>
 <body>
@@ -28,15 +44,19 @@
         
       <div id="header">
         <p><strong>Lazy Loading Nivo Slider</strong> &bull; <a href="https://github.com/leepowers/Nivo-Slider">GitHub Project Page</a> &bull; <a href="http://powers1.net">Lee Powers</a> &bull; <a href="http://nivo.dev7studios.com">Nivo Slider</a></strong></p>
+        <p><small>This demo contains four images using the <span class="code">onImageLoad</span> event to update the display whenever an image begins loading. Note how an image is loaded before it's shown.</small></p>
+        <p>Loading: <span id="imgload_txt">none</span></p>
+        <p>Showing: <span id="imgshow_txt">none</span></p>
       </div>
 
         <div class="slider-wrapper theme-default">
             <div class="ribbon"></div>
             <div id="slider" class="nivoSlider">
-                <img data-src="images/large/IMG-0752.jpg" alt="" title="#htmlcaption">
-                <img data-src="images/large/smrpg-ihateyouare.jpg" alt="" />
-                <a href="http://dev7studios.com"><img data-src="images/large/LUqak.jpg" alt="" title="This is an example of an inline caption" /></a>
-                <img data-src="images/large/fall2.jpg" alt="" data-transition="slideInLeft" />
+                <!-- You can use `src` attribute to specify a smaller image to pass HTML validation - or to provide a default image for non-javascript users. -->
+                <img src="images/large/gray.png" data-src="images/large/IMG-0752.jpg" alt="" title="#htmlcaption">
+                <img data-src="images/large/smrpg-ihateyouare.jpg" alt="" title="#htmlcaption" />
+                <a href="http://dev7studios.com"><img data-src="images/large/LUqak.jpg" alt="" title="This is an example of an inline caption" title="#htmlcaption" /></a>
+                <img data-src="images/large/fall2.jpg" alt="" data-transition="slideInLeft" title="#htmlcaption" />
             </div>
             <div id="htmlcaption" class="nivo-html-caption">
                 <strong>This</strong> is a demo of Nivo Slider with lazy loading of images.
@@ -50,7 +70,17 @@
     <script type="text/javascript" src="../jquery.nivo.slider.js"></script>
     <script type="text/javascript">
     $(window).load(function() {
-        $('#slider').nivoSlider();
+        $('#slider').nivoSlider({
+          pauseOnHover: false,
+          pauseTime: 6000,
+          onImageLoad: function(img) {
+            $('#imgload_txt').text(img.attr('src'));
+          },
+          onImageChange: function(img) {
+            console.log(img);
+            $('#imgshow_txt').text(img.attr('src'));
+          }
+        });
     });
     </script>
 </body>

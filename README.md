@@ -20,11 +20,17 @@ After:
 
   `<img data-src="my-image.jpg" alt="" title="Caption for my image.">`
 
-And that's it! Though it's highly recommended to include a `src` to placeholder image for valid HTML markup. 
+And that's it! 
+
+Though it's highly recommended to include a `src` to small placeholder image for valid HTML markup. (And for non-javascript users). Note that `data-src` has precedence over `src` 
 
 View the live example: [http://powers1.net/files/nivo/demo/demo-lazy.html](http://powers1.net/files/nivo/demo/demo-lazy.html)
 
-See `demo/demo-lazy.html` in the repository for example code. 
+See `demo/demo-lazy.html` in the repository for example code. (Or view source on the demo)
+
+## Events
+
+The custom `onImageLoad` event is exposed and triggered whenever an image starts loading. May be called multiple times per image.   
 
 ## About the author
 

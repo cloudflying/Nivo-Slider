@@ -84,7 +84,8 @@
           if (nxt >= kids.length) nxt = 0
           else if (nxt < 0) nxt = 0;
           var img = parse_image(nxt);
-          img.attr('src', img.data('src'));  // Update image's source from the data source 
+          img.attr('src', img.data('src'));  // Update image's source from the data source
+          settings.onImageLoad.call(this, img);
         }
         
         //If randomStart
@@ -111,7 +112,10 @@
         }
         
         //Set first background
+        preload_image(0);
         slider.css('background','url("'+ parse_src(vars.currentImage) +'") no-repeat');
+        settings.onImageLoad.call(this, vars.currentImage);
+        settings.onImageChange.call(this, vars.currentImage);
         
         // Preload second image to transition into.
         // Given the first image some time to load!
@@ -385,6 +389,8 @@
 				$('.nivo-controlNav a', slider).removeClass('active');
 				$('.nivo-controlNav a:eq('+ vars.currentSlide +')', slider).addClass('active');
 			}
+                        // Trigger event that a new image has been selected
+                        settings.onImageChange.call(this, vars.currentImage);
 			
 			//Process caption
 			processCaption(settings);
@@ -718,7 +724,9 @@
 		afterChange: function(){},
 		slideshowEnd: function(){},
         lastSlide: function(){},
-        afterLoad: function(){}
+        afterLoad: function(){},
+        onImageLoad: function(img) {},
+        onImageChange: function() {}
 	};
 	
 	$.fn._reverse = [].reverse;
