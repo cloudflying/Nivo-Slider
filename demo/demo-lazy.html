@@ -70,15 +70,20 @@
     <script type="text/javascript" src="../jquery.nivo.slider.js"></script>
     <script type="text/javascript">
     $(window).load(function() {
+        var imgload = $('#imgload_txt'),
+            imgshow = $('#imgshow_txt');
         $('#slider').nivoSlider({
           pauseOnHover: false,
           pauseTime: 6000,
           onImageLoad: function(img) {
-            $('#imgload_txt').text(img.attr('src'));
+            imgload.hide();
+            imgload.text(img.attr('src'));
+            imgload.fadeIn();
           },
           onImageChange: function(img) {
-            console.log(img);
-            $('#imgshow_txt').text(img.attr('src'));
+            imgshow.hide();
+            imgshow.text(img.attr('src'));
+            imgshow.fadeIn();
           }
         });
     });
