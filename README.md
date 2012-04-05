@@ -6,7 +6,7 @@ Use cases:
 
  * Dozens of images in the slideshow
  * Very large images
- * Mobile enviornments
+ * Mobile environments
 
 ## Usage
 
