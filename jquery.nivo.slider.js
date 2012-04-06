@@ -36,7 +36,10 @@
         slider.addClass('nivoSlider');
         
         //Find our slider children
-        var kids = slider.children();
+        var kids = slider.children().filter(function() {
+          var child = $(this);
+          return child.is('img') || child.find('img:first').length > 0;
+        });
         kids.each(function() {
             var child = $(this);
             var link = '';
@@ -88,7 +91,7 @@
           if (nxt >= kids.length) nxt = 0
           else if (nxt < 0) nxt = 0;
           var img = parse_image(nxt);
-          img.attr('src', img.data('src'));  // Update image's source from the data source
+          $('<img>').attr('src', img.data('src'));
           settings.onImageLoad.call(this, img);
         }
         
