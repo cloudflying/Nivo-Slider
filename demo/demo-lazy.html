@@ -77,12 +77,12 @@
           pauseTime: 6000,
           onImageLoad: function(img) {
             imgload.hide();
-            imgload.text(img.attr('src'));
+            imgload.text(img.data('src'));
             imgload.fadeIn();
           },
           onImageChange: function(img) {
             imgshow.hide();
-            imgshow.text(img.attr('src'));
+            imgshow.text(img.data('src'));
             imgshow.fadeIn();
           }
         });
