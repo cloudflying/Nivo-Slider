@@ -24,7 +24,7 @@ And that's it!
 
 Though it's highly recommended to include a `src` to small placeholder image for valid HTML markup. (And for non-javascript users). Note that `data-src` has precedence over `src` 
 
-View the live example: [http://powers1.net/files/nivo/demo/demo-lazy.html](http://powers1.net/files/nivo/demo/demo-lazy.html)
+View the live example: [http://leepowers.net/files/nivo/demo/demo-lazy.html](http://leepowers.net/files/nivo/demo/demo-lazy.html)
 
 See `demo/demo-lazy.html` in the repository for example code. (Or view source on the demo)
 
@@ -34,7 +34,7 @@ The custom `onImageLoad` event is exposed and triggered whenever an image starts
 
 ## About the author
 
-Forked by Lee Powers: [http://powers1.net](http://powers1.net)
+Forked by Lee Powers: [http://leepowers.net](http://leepowers.net)
 
 I've needed this for a while for slideshows with large images or a large number of images. Tried dabbling in creating my own jQuery slideshow plugin, but Nivo already has 99% of what I'm looking for. Reading [this Stack Overflow question](http://stackoverflow.com/questions/5502531/how-can-i-control-how-nivoslider-preloads-images/) provided any additional push needed to get this working!
 
