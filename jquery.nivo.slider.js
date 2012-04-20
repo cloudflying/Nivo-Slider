@@ -234,6 +234,17 @@
             });
         }
         
+        
+        // Slide to Specific Slide - Justin Porter - textconnects.com
+        // usage: insert link <a name="slideTo(NUM)" rel="(Slide Number to Slide to)">Link Text</a>
+        $("a[name*='slideTo']").click(function(){
+        	if(vars.running) return false;
+		clearInterval(timer);
+                timer = '';		
+		vars.currentSlide = $(this).attr('rel') - 1;	
+		nivoRun(slider, kids, settings, 'control');
+		});
+        
         //Keyboard Navigation
         if(settings.keyboardNav){
             $(window).keypress(function(event){
